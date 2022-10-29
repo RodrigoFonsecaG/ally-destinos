@@ -15,6 +15,9 @@ import useForm from '../../hooks/useForm';
 import { Form } from '@unform/web';
 import ReactSelect from '../../components/Select/ReactSelect';
 
+import schemaForm from '../../schemas/schemaForm';
+
+import * as Yup from 'yup';
 
 interface selectOptionsProps {
     value: string;
@@ -35,9 +38,8 @@ const CreateDestination: React.FC = () => {
     const { data: cities } = useFetch('/city');
     const formRef = useRef(null);
 
-
     console.log(countries);
-
+    console.log(cities);
 
     const { formError, handleSubmit } = useForm();
 
@@ -56,10 +58,32 @@ const CreateDestination: React.FC = () => {
 
     const [filteredCities, setFilteresCities] = useState([]);
 
-    function onCountriesChange(data) {
-        let countryCode = [];
+    async function onSubmit(data) {
+        try {
+            // Remove all previous errors
+            formRef?.current?.setErrors({});
+            
+            await schemaForm.validate(data, {
+                abortEarly: false,
+            });
+            // Validation passed
+            console.log(data);
+        } catch (err) {
+            const validationErrors = {};
+            if (err instanceof Yup.ValidationError) {
+                err.inner.forEach((error) => {
+                    validationErrors[error.path] = error.message;
+                });
+                formRef?.current?.setErrors(validationErrors);
+            }
+        }
+    }
 
-        data.map((country) => {
+    function onSelectFocus() {
+        let countryCode = [];
+        let countries = formRef?.current?.getFieldRef('countries').props.value;
+
+        countries.map((country) => {
             countryCode.push(country.value);
         });
 
@@ -68,10 +92,6 @@ const CreateDestination: React.FC = () => {
         });
 
         setFilteresCities(filteredCities);
-    }
-
-    function onSubmit(data) {
-        console.log(data);
     }
 
     return (
@@ -127,7 +147,6 @@ const CreateDestination: React.FC = () => {
                                 placeholder="Selecione o país"
                                 isMulti
                                 options={getSelectOptions(countries)}
-                                onChange={onCountriesChange}
                                 components={{ Option: CustomOption }}
                                 noOptionsMessage={() =>
                                     'Sem países disponíveis!'
@@ -145,6 +164,7 @@ const CreateDestination: React.FC = () => {
                                 noOptionsMessage={() =>
                                     'Sem cidades disponíveis!'
                                 }
+                                onFocus={onSelectFocus}
                             />
                         </div>
                     </div>
