@@ -1,0 +1,42 @@
+.input-container {
+    background: var(--white);
+    border: 1px solid var(--dark-gray);
+    border-radius: 8px;
+    padding: 1.6rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0.8rem 0 2rem 0;
+}
+
+.input-container:focus-within {
+    border: 1px solid var(--light-red);
+  }
+
+.input-container input {
+    flex: 1;
+    border: 0;
+    background: transparent;
+    width: 100%;
+    color: var(--text-black);
+}
+
+.input-container input::placeholder{
+    color: #9C98A6;
+}
+
+.input-container svg {
+    color:  var(--light-red);
+    margin-right: 1.6rem;
+}
+
+
+/* Removendo background do auto-complete do input */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+input[data-autocompleted] {
+    background-color: transparent !important;
+}

@@ -1,10 +1,12 @@
 {
-    "env": {
-        "browser": true,
-        "es2020": true,
-        "jest": true,
-        "node": true
-    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "react",
+        "prettier",
+        "react-hooks",
+        "@typescript-eslint",
+        "import"
+    ],
     "settings": {
         "react": {
             "version": "detect"
@@ -12,44 +14,51 @@
     },
     "extends": [
         "eslint:recommended",
+        "plugin:@next/next/recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
+        "prettier/@typescript-eslint",
         "plugin:prettier/recommended"
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 11,
-        "sourceType": "module"
+    "env": {
+        "es2021": true,
+        "browser": true
     },
-    "plugins": ["react", "react-hooks", "@typescript-eslint", "import"],
     "rules": {
+        "comma-dangle": ["error", "always-multiline"],
+        "semi": "error",
         "prettier/prettier": "error",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
-        "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-        "import/prefer-default-export": "off",
-        "react/jsx-one-expression-per-line": "off",
-        "react/jsx-props-no-spreading": "off",
+        "react/react-in-jsx-scope": 0,
+        "react/display-name": 0,
         "react/prop-types": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/camelcase": "off",
-        "no-unused-expressions": "off",
-        "import/no-duplicates": "off",
-        "@typescript-eslint/explicit-function-return-type": [
-            "error",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/explicit-member-accessibility": 0,
+        "@typescript-eslint/indent": 0,
+        "@typescript-eslint/member-delimiter-style": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-var-requires": 0,
+        "@typescript-eslint/no-use-before-define": 0,
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
             {
-                "allowExpressions": true
+                "argsIgnorePattern": "^_"
             }
         ],
-        "import/extensions": [
-            "error",
-            "ignorePackages",
+        "no-console": [
+            "warn",
             {
-                "ts": "never",
-                "tsx": "never"
+                "allow": ["warn", "error"]
+            }
+        ],
+        "import/no-duplicates": [
+            "error",
+            {
+                "considerQueryString": true
             }
         ]
     }
