@@ -24,3 +24,10 @@
     overflow: auto;
 }
 
+.cards > h1{
+    color: var(--red);
+    font-size: 2rem;
+    text-align: center;
+
+}
+

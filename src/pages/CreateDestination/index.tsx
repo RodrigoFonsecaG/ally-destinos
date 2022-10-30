@@ -19,6 +19,7 @@ import ReactSelect from '../../components/Select/ReactSelect';
 import { FormHandles } from '@unform/core';
 import schemaForm from '../../schemas/schemaForm';
 
+import { useNavigate } from 'react-router-dom';
 
 import {
     ISelectOptions,
@@ -26,6 +27,7 @@ import {
     ICitiesProps,
     ICountriesProps,
 } from '../../dtos/IFormDTO';
+import { Navigate } from 'react-router-dom';
 
 const CreateDestination: React.FC = () => {
     const { data: countries, isFetching, error } = useFetch('/country');
@@ -36,13 +38,17 @@ const CreateDestination: React.FC = () => {
         [],
     );
 
+    const navigate = useNavigate()
+
     // A partir da API cria as opções para o select de paises ou cidades
     function getSelectOptions(data: ICountriesProps[] | ICitiesProps[]) {
         const options: ISelectOptions[] = [];
 
         data.map((data: ICountriesProps | ICitiesProps) => {
             options.push({
-                value: data.code,
+                value: `${data.code}${
+                    data.country_code ? data.country_code : ''
+                }`,
                 label: data.name_ptbr || data.name,
             });
         });
@@ -55,13 +61,15 @@ const CreateDestination: React.FC = () => {
         let countryCode: Array<string> = [];
         let countries = formRef?.current?.getFieldRef('countries').props.value;
 
-        countries.map((country: ISelectOptions) => {
+        countries?.map((country: ISelectOptions) => {
             countryCode.push(country.value);
         });
 
         const filteredCities = cities.filter((city: ICitiesProps) => {
             return countryCode.includes(city.country_code);
         });
+
+        console.log(filteredCities);
 
         setFilteresCities(filteredCities);
     }
@@ -76,6 +84,12 @@ const CreateDestination: React.FC = () => {
                 await schemaForm.validate(data, {
                     abortEarly: false,
                 });
+
+                const dataJson = JSON.stringify(data);
+
+                localStorage.setItem('data', dataJson);
+
+                navigate("/destination")
             }
         } catch (err) {
             if (err instanceof Yup.ValidationError) {

@@ -1,6 +1,7 @@
 interface ISelectOptions {
     value: string;
     label: string;
+    code?: string;
 }
 
 interface IFormProps {
@@ -16,6 +17,7 @@ interface ICountriesProps {
     code: string;
     name: string;
     name_ptbr?: string;
+    country_code: string;
 }
 
 interface ICitiesProps {

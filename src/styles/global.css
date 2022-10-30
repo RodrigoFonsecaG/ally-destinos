@@ -18,7 +18,7 @@ html {
 html,
 body,
 #root {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 body {
@@ -81,4 +81,5 @@ p {
     padding: 6rem 0;
     flex: 1.5;
     height: 100%;
+    overflow: auto;
 }
