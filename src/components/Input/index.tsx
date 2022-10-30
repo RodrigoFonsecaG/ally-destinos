@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = ({
     ...rest
 }) => {
     const inputRef = useRef(null);
-    const { fieldName, registerField, defaultValue, error } = useField(name);
+    const { fieldName, registerField, error } = useField(name);
 
     useEffect(() => {
         registerField({

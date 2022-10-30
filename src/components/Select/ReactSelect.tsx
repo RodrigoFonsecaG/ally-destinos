@@ -6,8 +6,15 @@ import { selectStyles, CustomOption } from './styles';
 import ErrorToolTip from '../ErrorTooltip';
 interface Props extends SelectProps<OptionTypeBase> {
     name: string;
+    label: string;
 }
-export default function Select({ name, ...rest }: Props) {
+
+interface OptionType {
+    value: string;
+    label: string;
+}
+
+export default function Select({ name, label, ...rest }: Props) {
     const selectRef = useRef(null);
     const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -20,11 +27,9 @@ export default function Select({ name, ...rest }: Props) {
                     if (!ref.state.selectValue) {
                         return [];
                     }
-                    return ref.state.selectValue.map(
-                        (option: OptionTypeBase) => {
-                            return { code: option.value, label: option.label };
-                        },
-                    );
+                    return ref.state.selectValue.map((option: OptionType) => {
+                        return { code: option.value, label: option.label };
+                    });
                 }
                 if (!ref.state.selectValue) {
                     return '';
@@ -36,6 +41,7 @@ export default function Select({ name, ...rest }: Props) {
 
     return (
         <>
+            <label>{label}</label>
             {error && <div>{error}</div>}
             <ReactSelect
                 defaultValue={defaultValue}

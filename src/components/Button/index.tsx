@@ -1,10 +1,12 @@
 import React from 'react'
-import './styles.css'
+import './styles.css';
 
-const Button = ({children, ...rest}) => {
-  return (
-    <button {...rest}>{children}</button>
-  )
+interface ButtonProps {
+    children: string;
 }
+
+const Button: React.FC<ButtonProps> = ({ children, ...rest }) => {
+    return <button {...rest}>{children}</button>;
+};
 
 export default Button
