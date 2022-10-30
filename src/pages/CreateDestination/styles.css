@@ -1,19 +1,4 @@
-.book-destination-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 6rem 0;
-    flex: 1.5;
-    height: 100%;
-}
-
-.book-destination-container form > img{
-    max-width: 18rem;
-    margin: 0 auto;
-}
-
-.book-destination-container form{
+form{
     width: 100%;
     width: 90%;
     max-width: 528px;
@@ -24,7 +9,14 @@
     gap: 5rem;
 }
 
-.book-destination-container form .input-group{
+form > img{
+    max-width: 18rem;
+    margin: 0 auto;
+}
+
+
+
+form .input-group{
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -33,7 +25,7 @@
 
 
 @media(max-width: 500px){
-    .book-destination-container form .input-group{
+    form .input-group{
     display: block;
 }
 }

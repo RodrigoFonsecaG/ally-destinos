@@ -1,0 +1,26 @@
+#destinations > div.container-wrapper {
+    max-width: min(110rem, 90%);
+    margin: 0 auto;
+}
+
+#destinations > div.container-wrapper > img {
+    max-width: 18rem;
+    margin: 0 auto;
+}
+
+#destinations > div.container-wrapper {
+    justify-content: flex-start;
+    gap: 6rem;
+}
+
+.cards{
+    padding: 0 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.4rem;
+    flex-direction: column;
+    overflow: auto;
+}
+

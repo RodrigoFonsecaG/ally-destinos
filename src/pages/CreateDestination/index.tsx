@@ -88,7 +88,7 @@ const CreateDestination: React.FC = () => {
 
     return (
         <div className="container">
-            <div className="book-destination-container">
+            <div className="container-wrapper">
                 <Form ref={formRef} onSubmit={onSubmit}>
                     <img src={allyLogo} alt="Ally Hub" />
                     <div className="form-fields">
