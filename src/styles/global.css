@@ -13,6 +13,8 @@ html {
     --text-black: #222222;
     --dark-gray: #737373;
     --white: #ffffff;
+    --toastify-icon-color-success: #fff !important;
+    --toastify-color-progress-success: #ff4f5a !important;
     font-size: 62.5%; /* 1rem = 10px */
 }
 html,
@@ -82,4 +84,17 @@ p {
     flex: 1.5;
     height: 100%;
     overflow: auto;
+}
+
+.toast{
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.toast > .toast-success{
+    color: var(--white);
+}
+
+.toast > .toast-success:before{
+    color: var(--white);
 }

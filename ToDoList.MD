@@ -7,7 +7,7 @@
 - Deve ser utilizado a API da amazon para buscar os países. ✅
 - Deve ser utilizado a API da amazon para buscar as cidades. ✅
 - Deve ser utilizado o Yup para validar todos os campos. ✅
-- Deve ser utilizado Toast para relatar um sucesso ou problema ao usuario.
+- Deve ser utilizado Toast para relatar um sucesso ou problema ao usuario. ✅
 - Deve ser utilizado o local storage para armazenar as informações ✅
 **RN**
 - Todos os campos deve ser obrigatórios. ✅

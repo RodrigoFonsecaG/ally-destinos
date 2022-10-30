@@ -20,6 +20,7 @@ import { FormHandles } from '@unform/core';
 import schemaForm from '../../schemas/schemaForm';
 
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 import {
     ISelectOptions,
@@ -27,7 +28,9 @@ import {
     ICitiesProps,
     ICountriesProps,
 } from '../../dtos/IFormDTO';
-import { Navigate } from 'react-router-dom';
+
+
+
 
 const CreateDestination: React.FC = () => {
     const { data: countries, isFetching, error } = useFetch('/country');
@@ -69,12 +72,11 @@ const CreateDestination: React.FC = () => {
             return countryCode.includes(city.country_code);
         });
 
-        console.log(filteredCities);
 
         setFilteresCities(filteredCities);
     }
 
-    // No submit do botão, verifica se há erros no campo, se não cria um json no localStorage com os dados
+    // No submit do botão, verifica se há erros no campo, se não cria um json no localStorage com os dados e mostra toast de sucesso
     async function onSubmit(data: IFormProps) {
         try {
             if (formRef.current) {
@@ -90,6 +92,8 @@ const CreateDestination: React.FC = () => {
                 localStorage.setItem('data', dataJson);
 
                 navigate("/destination")
+
+                toast.success('Destinos marcados com sucesso!')
             }
         } catch (err) {
             if (err instanceof Yup.ValidationError) {
@@ -146,6 +150,7 @@ const CreateDestination: React.FC = () => {
                                 placeholder="Selecione o país"
                                 label="Países"
                                 isMulti
+                                //@ts-ignore
                                 options={getSelectOptions(countries)}
                                 components={{ Option: CustomOption }}
                                 noOptionsMessage={() =>
@@ -159,6 +164,7 @@ const CreateDestination: React.FC = () => {
                                 placeholder="Selecione a cidade"
                                 label="Cidades"
                                 isMulti
+                                //@ts-ignore
                                 options={getSelectOptions(filteredCities)}
                                 noOptionsMessage={() =>
                                     'Sem cidades disponíveis!'

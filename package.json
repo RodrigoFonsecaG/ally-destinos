@@ -17,6 +17,7 @@
         "react-dom": "^18.2.0",
         "react-input-mask": "^2.0.4",
         "react-select": "^5.5.7",
+        "react-toastify": "^9.0.8",
         "yup": "^0.32.11"
     },
     "devDependencies": {
